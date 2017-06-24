@@ -1,7 +1,7 @@
 
 <html>
 <head>
-	<title>Sri Vijaya Electronics : Today</title>
+	<title>Sri Vijaya Electronics : Records</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="icon" href="svelogo.png" type="image/png" sizes="16x16 32x32"> 
@@ -15,13 +15,13 @@
     
     <div class="headbar col-md-12 col-sm-12 col-xs-12">
         <img class="himg" src="svelogo.png">
-        <h1 class="htitle">Today, <?php echo date('d F Y'); ?> : Rs 
+        <h1 class="htitle">Accounts on, <?php echo $_POST['tabext']; ?> : Rs 
         <?php
             $servername = "localhost";
             $username = $_POST["name"];
             $password = $_POST["pwd"];
             $conn = new mysqli($servername, $username, $password, "SVE");
-            $sql = "SELECT SUM(NET_VALUE) FROM ".$_POST['tabname'].";";
+            $sql = "SELECT SUM(NET_VALUE) FROM ".$_POST['tabname'].$_POST['tabext'].";";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -55,7 +55,7 @@
             $username = $_POST["name"];
             $password = $_POST["pwd"];
             $conn = new mysqli($servername, $username, $password, "SVE");
-            $sql = "SELECT ID,NAME,PRICE,QTY,DISC,NET_VALUE,CORD FROM ".$_POST['tabname'].";";
+            $sql = "SELECT ID,NAME,PRICE,QTY,DISC,NET_VALUE,CORD FROM ".$_POST['tabname'].$_POST['tabext'].";";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {

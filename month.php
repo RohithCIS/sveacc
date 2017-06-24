@@ -1,7 +1,7 @@
 
 <html>
 <head>
-	<title>Sri Vijaya Electronics : Today</title>
+	<title>Sri Vijaya Electronics : This Month</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="icon" href="svelogo.png" type="image/png" sizes="16x16 32x32"> 
@@ -15,7 +15,7 @@
     
     <div class="headbar col-md-12 col-sm-12 col-xs-12">
         <img class="himg" src="svelogo.png">
-        <h1 class="htitle">Today, <?php echo date('d F Y'); ?> : Rs 
+        <h1 class="htitle">This Month, <?php echo date('F Y'); ?> : Rs 
         <?php
             $servername = "localhost";
             $username = $_POST["name"];

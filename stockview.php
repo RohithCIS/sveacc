@@ -1,7 +1,7 @@
 
 <html>
 <head>
-	<title>Sri Vijaya Electronics : Today</title>
+	<title>Sri Vijaya Electronics : Stock</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="icon" href="svelogo.png" type="image/png" sizes="16x16 32x32"> 
@@ -15,7 +15,7 @@
     
     <div class="headbar col-md-12 col-sm-12 col-xs-12">
         <img class="himg" src="svelogo.png">
-        <h1 class="htitle">Today, <?php echo date('d F Y'); ?> : Rs 
+        <h1 class="htitle">Total Stock : Rs 
         <?php
             $servername = "localhost";
             $username = $_POST["name"];
@@ -29,8 +29,7 @@
                 while($row = $result->fetch_assoc()) {
                     echo $row["SUM(NET_VALUE)"];
                 }
-            } 
-            else {
+            } else {
                 echo "0";
             }
             $conn->close();
@@ -46,16 +45,15 @@
             <th>Name</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Discount</th>
             <th>Total</th>
-            <th>Credit or Debit</th>
+            <th>Last Updated</th>
         </tr>
         <?php
             $servername = "localhost";
             $username = $_POST["name"];
             $password = $_POST["pwd"];
             $conn = new mysqli($servername, $username, $password, "SVE");
-            $sql = "SELECT ID,NAME,PRICE,QTY,DISC,NET_VALUE,CORD FROM ".$_POST['tabname'].";";
+            $sql = "SELECT ID,NAME,PRICE,QTY,NET_VALUE,LUPDAT FROM ".$_POST['tabname'].";";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -66,9 +64,8 @@
                                 <td>".$row["NAME"]."</td>
                                 <td>".$row["PRICE"]."</td>
                                 <td>".$row["QTY"]."</td>
-                                <td>".$row["DISC"]."</td>
                                 <td>".$row["NET_VALUE"]."</td>
-                                <td>".$row["CORD"]."</td>
+                                <td>".$row["LUPDAT"]."</td>
                             </tr>";
                 }
             } else {

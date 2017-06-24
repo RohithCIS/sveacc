@@ -6,6 +6,10 @@ html{
     font-family: 'Dosis', sans-serif;
 }
 
+h2{
+    font-family: 'Dosis', sans-serif;
+}
+
 /*MAIN LOGIN*/
 
 .contl{
@@ -42,7 +46,6 @@ html{
 .headbar{
     height: 100px;
     border-bottom: 5px solid #888;
-    margin: 10px;
 }
 
 .himg{
@@ -58,6 +61,27 @@ html{
     font-family: 'Dosis', sans-serif;
 }
 
+/*MENU PAGE*/
+
+.mitem{
+    text-align: center;
+    font-family: 'Dosis', sans-serif;
+}
+
+.mitem label{
+    font-family: 'Dosis', sans-serif;
+    font-size: 30px;
+}
+
+.mitem input{
+    margin: 10px;
+    padding: 5px;
+    height: 40px;
+    width: 30%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
 .mitem button{
     height: 40px;
     width: 50%;
@@ -66,6 +90,7 @@ html{
     border-radius: 5px;
     border: none;
     background-color: #DEDEDE;
+    font-size: 20px;
 }
 
 .mitem button:hover{
@@ -76,6 +101,8 @@ h2{
     padding: 20px;
     padding-top: 150px;
 }
+
+/*TODAY DISPLAY*/
 
 .tdytabdisp{
     padding: 50px;
@@ -96,4 +123,42 @@ h2{
 
 tr:nth-child(1) {
     background-color: #dddddd;
+}
+
+/*UPDATE STOCK*/
+
+.upitem{
+    text-align: center;
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
+}
+
+.upitem input{
+    margin: 10px;
+    padding: 5px;
+    height: 40px;
+    width: 30%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.upitem button{
+    height: 40px;
+    width: 30%;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background-color: #DEDEDE;
+    font-size: 20px;
+}
+
+.upitem button:hover{
+    background-color: #F4F4F4
+}
+
+/*BILLING*/
+
+.billdisp{
+    padding: 50px;
 }

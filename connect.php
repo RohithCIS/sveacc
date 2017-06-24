@@ -18,68 +18,109 @@
         <h1 class="htitle">Menu</h1>
     </div>
     <br>
-    <br>
     <h2>
-<?php
+        <?php
 
-$servername = "localhost";
-$username = $_POST["name"];
-$password = $_POST["pwd"];
+        $servername = "localhost";
+        $username = $_POST["name"];
+        $password = $_POST["pwd"];
 
-$conn = new mysqli($servername, $username, $password);
+        $conn = new mysqli($servername, $username, $password);
 
-$create="CREATE DATABASE IF NOT EXISTS SVE;";
-if ($conn->query($create) === TRUE) {
-    echo "";
-} else {
-    echo "Error creating database: " . $conn->error . "<br>";
-}
-$conn->close();
+        $create="CREATE DATABASE IF NOT EXISTS SVE;";
+        if ($conn->query($create) === TRUE) {
+            echo "";
+        } else {
+            echo "Error creating database: " . $conn->error . "<br>";
+        }
+        $conn->close();
 
 
-$conn = new mysqli($servername, $username, $password, "SVE");
+        $conn = new mysqli($servername, $username, $password, "SVE");
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error) . "<br>";
-}
-echo "Connected successfully <br>";
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error) . "<br>";
+        }
+        echo "Connected successfully <br>";
 
-$stk = "CREATE TABLE IF NOT EXISTS STOCK (ID INT(6) UNSIGNED PRIMARY KEY, NAME VARCHAR(30) NOT NULL, PRICE FLOAT(15) NOT NULL, QTY INT(6), NET_VALUE FLOAT(10), LUPDAT TIMESTAMP);";
-$conn->query($stk);
+        $stk = "CREATE TABLE IF NOT EXISTS STOCK (ID INT(6) UNSIGNED PRIMARY KEY, NAME VARCHAR(30) NOT NULL, PRICE FLOAT(15) NOT NULL, QTY INT(6), NET_VALUE FLOAT(10), LUPDAT TIMESTAMP);";
+        $conn->query($stk);
 
-//DATABASE
-$tdy = "CREATE TABLE IF NOT EXISTS dt".date("dmY")." (ID INT(6) UNSIGNED PRIMARY KEY, NAME VARCHAR(30) NOT NULL, PRICE FLOAT(15) NOT NULL, QTY INT(6), DISC INT(10), NET_VALUE FLOAT(10), CORD VARCHAR(10));";
-if ($conn->query($tdy) === TRUE) {
-    echo "Today's account opened successfully <br>";
-} else {
-    echo "Error opening Account: " . $conn->error . "<br>";
-}
+        //DATABASE
+        $tdy = "CREATE TABLE IF NOT EXISTS dt".date("dmY")." (ID INT(6) UNSIGNED PRIMARY KEY, NAME VARCHAR(30) NOT NULL, PRICE FLOAT(15) NOT NULL, QTY INT(6), DISC INT(10), NET_VALUE FLOAT(10), CORD VARCHAR(10));";
 
-$conn->close();
+        $mon = "CREATE TABLE IF NOT EXISTS mon".date("mY")." (ID INT(6) UNSIGNED PRIMARY KEY, NAME VARCHAR(30) NOT NULL, PRICE FLOAT(15) NOT NULL, QTY INT(6), DISC INT(10), NET_VALUE FLOAT(10), CORD VARCHAR(10));";
+        
+        if ($conn->query($tdy) && $conn->query($mon) === TRUE) {
+            echo "Today's and Month's account opened successfully <br>";
+        } else {
+            echo "Error opening Account: " . $conn->error . "<br>";
+        }
 
-?>
-	</h2>
-    <div class="mitem col-md-6 col-sm-12 col-xs-12">
-        <form method="POST" action="today.php">
-            <label>Today</label><br>
-            <input type="hidden" name="tabname" value="<?php echo 'dt'.date('dmY'); ?>">
-            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
-            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
-            <button type="submit">View Today's Accounts</button>
-        </form>
-    </div>
+        $conn->close();
+
+        ?>
+        	</h6>
     <div class="mitem col-md-6 col-sm-12 col-xs-12">
         <form method="POST" action="stockup.php">
-            <label>Stock Add/Update</label><br>
+            <label>Stock</label><br>
             <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
             <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
             <input type="hidden" name="id" value="">
             <input type="hidden" name="pname" value="">
             <input type="hidden" name="price" value="">
             <input type="hidden" name="qty" value="">
-
+            <input type="hidden" name="stk" value="">
             <button type="submit">Update Stock</button>
+        </form>
+        <form method="POST" action="stockview.php">
+            <input type="hidden" name="tabname" value="STOCK">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <button type="submit">View Stock</button>
+        </form>
+    </div>
+    <div class="mitem col-md-6 col-sm-12 col-xs-12">
+        <form method="POST" action="today.php">
+            <label>Records</label><br>
+            <input type="hidden" name="tabname" value="<?php echo 'dt'.date('dmY'); ?>">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <button type="submit">View Today's Accounts</button>
+        </form>
+        <form method="POST" action="month.php">
+            <input type="hidden" name="tabname" value="<?php echo 'mon'.date('mY'); ?>">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <button type="submit">View this Month's Accounts</button>
+        </form>
+        <form method="POST" action="sdate.php">
+            <input type="hidden" name="tabname" value="<?php echo 'dt'; ?>">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <input type="text" name="tabext" placeholder="Enter Date like ddmmyyyy" required>
+            <button type="submit">View Accounts of given Day</button>
+        </form>
+        <form method="POST" action="smonth.php">
+            <input type="hidden" name="tabname" value="<?php echo 'mon'; ?>">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <input type="text" name="tabext" placeholder="Enter Month like mmyyyy" required>
+            <button type="submit">View Accounts of given Month</button>
+        </form>
+    </div>
+    <div class="mitem col-md-6 col-sm-12 col-xs-12">
+        <form method="POST" action="bill.php">
+            <label>Billing</label><br>
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <input type="hidden" name="tabname" value="<?php echo date(dmyhi); ?>">
+            <input type="hidden" name="id" value="">
+            <input type="hidden" name="price" value="">
+            <input type="hidden" name="qty" value="">
+            <input type="hidden" name="stk" value="">
+            <button type="submit">New Bill</button>
         </form>
     </div>
 

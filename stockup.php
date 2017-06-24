@@ -17,56 +17,62 @@
         <img class="himg" src="svelogo.png">
         <h1 class="htitle">Update Stock</h1>
     </div>
-    <br>
-    <br>
     <h2>
-<?php
+        <?php
 
-$servername = "localhost";
-$username = $_POST["name"];
-$password = $_POST["pwd"];
-echo "LOL";
-    $ID=$_POST["id"];
-    $NAME=$_POST["pname"];
-    $PRICE=$_POST["price"];
-    $QTY=$_POST["qty"];
-    $stk = "INSERT INTO STOCK (ID,NAME,PRICE,QTY,NET_VALUE,LUPDAT) VALUES (".$ID.",".$NAME.",".$PRICE.",".$QTY.",PRICE*QTY,CURRENT_TIME);";
+        $servername = "localhost";
+        $username = $_POST["name"];
+        $password = $_POST["pwd"];
+        $ID=$_POST["id"];
+        $NAME=$_POST["pname"];
+        $PRICE=$_POST["price"];
+        $QTY=$_POST["qty"];
+        $stk =$_POST["stk"];
 
-$conn = new mysqli($servername, $username, $password, "SVE");
+        $conn = new mysqli($servername, $username, $password, "SVE");
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error) . "<br>";
-}
-echo "Connected successfully <br>";
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error) . "<br>";
+        }
+        echo "Connected successfully <br>";
 
-if ($stk != "") {
+        if ($stk != "") {
 
-$stk = "INSERT INTO STOCK (ID,NAME,PRICE,QTY,NET_VALUE,LUPDAT) VALUES (".$ID.",'".$NAME."',".$PRICE.",".$QTY.",PRICE*QTY,CURRENT_TIME);";
-    if ($conn->query($stk)===TRUE){
-        echo "Entry Added <br>";
-    }
-    else{
-        $stk = "UPDATE STOCK SET NAME='".$NAME."',PRICE=".$PRICE.",QTY=".$QTY." WHERE ID=".$ID.";";
-        $conn->query($stk);
-        echo "Updated or Error<br>";
-    }
-}
+        $stk = "INSERT INTO STOCK (ID,NAME,PRICE,QTY,NET_VALUE,LUPDAT) VALUES (".$ID.",'".$NAME."',".$PRICE.",".$QTY.",PRICE*QTY,CURRENT_TIME);";
+            if ($conn->query($stk)===TRUE){
+                echo "Entry Added <br>";
+            }
+            else{
+                $stk = "UPDATE STOCK SET NAME='".$NAME."',PRICE=".$PRICE.",QTY=".$QTY.",NET_VALUE=PRICE*QTY WHERE ID=".$ID.";";
+                $conn->query($stk);
+                if ($conn->query($stk)===TRUE){
+                    echo "Updated <br>";
+                }
+                else{
+                    echo "Error<br>";
+                }
+            }
+        }
+        else{
+            echo "Initialised";
+        }
 
 
-$conn->close();
+        $conn->close();
 
-?>
+        ?>
 	</h2>
-    <div class="mitem col-md-6 col-sm-12 col-xs-12">
+    <div class="upitem col-md-12 col-sm-12 col-xs-12">
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <label>Today</label><br>
+            <label>Add or Update Item</label><br>
             <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
-            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">         
-            <input type="number" name="id" placeholder="ID" required autofocus>         
-            <input type="text" name="pname" placeholder="Name" required >         
-            <input type="number" name="price" placeholder="Price" required >         
-            <input type="number" name="qty" placeholder="Quantity" required >
-            <button type="submit">Add/Update</button>
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <input type="hidden" name="stk" value="1">        
+            <input type="number" name="id" placeholder="ID" required autofocus><br>        
+            <input type="text" name="pname" placeholder="Name" required ><br>
+            <input type="number" name="price" placeholder="Price" required ><br>        
+            <input type="number" name="qty" placeholder="Quantity" required ><br>
+            <button type="submit">Add or Update</button>
         </form>
     </div>
 
