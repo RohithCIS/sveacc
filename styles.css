@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu|Dosis');
+
+/*GLOBAL*/
+
+html{
+    font-family: 'Dosis', sans-serif;
+}
+
+/*MAIN LOGIN*/
+
+.contl{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.logf input{
+    height: 40px;
+    width: 75%;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: solid 2px #8DDD31;
+}
+
+.logf button{
+    height: 40px;
+    width: 75%;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background-color: #DEDEDE;
+}
+
+.logf button:hover{
+    background-color: #F4F4F4
+}
+
+/*HEADER COMMON*/
+
+.headbar{
+    height: 100px;
+    border-bottom: 5px solid #888;
+    margin: 10px;
+}
+
+.himg{
+    height: 150%;
+    margin: 10px;
+    display: inline-block;
+    background-color: #fff;
+}
+
+.htitle{
+    display: inline-block;
+    font-size: 50px;
+    font-family: 'Dosis', sans-serif;
+}
+
+.mitem button{
+    height: 40px;
+    width: 50%;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background-color: #DEDEDE;
+}
+
+.mitem button:hover{
+    background-color: #F4F4F4
+}
+
+h2{
+    padding: 20px;
+    padding-top: 150px;
+}
+
+.tdytabdisp{
+    padding: 50px;
+    padding-top: 200px;
+}
+
+.tdytab{
+    font-family: 'Dosis', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tdytab td, .tdytab th {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(1) {
+    background-color: #dddddd;
+}

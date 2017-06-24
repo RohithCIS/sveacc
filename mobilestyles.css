@@ -1,0 +1,36 @@
+
+
+.contl{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.logf input{
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: solid 2px #8DDD31;
+}
+
+.logf button{
+    height: 50px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background-color: #DEDEDE;
+}
+
+.logf button:hover{
+    background-color: #F4F4F4
+}
+
+.contl img{
+    width: 100%;
+}
