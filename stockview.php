@@ -38,6 +38,14 @@
         </h1>
     </div>
 
+    <div class="cen">
+        <form method="POST" action="connect.php">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <button class="sub" type="submit">Main Menu</button>
+        </form>
+    </div>
+
     <div class="tdytabdisp">
         <table class="tdytab">
         <tr>

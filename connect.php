@@ -30,19 +30,17 @@
         $create="CREATE DATABASE IF NOT EXISTS SVE;";
         if ($conn->query($create) === TRUE) {
             echo "";
-        } else {
-            echo "Error creating database: " . $conn->error . "<br>";
-        }
+        } 
         $conn->close();
 
 
         $conn = new mysqli($servername, $username, $password, "SVE");
 
         // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error) . "<br>";
-        }
-        echo "Connected successfully <br>";
+        // if ($conn->connect_error) {
+        //     die("Connection failed: " . $conn->connect_error) . "<br>";
+        // }
+        // echo "Connected successfully <br>";
 
         $stk = "CREATE TABLE IF NOT EXISTS STOCK (ID INT(6) UNSIGNED PRIMARY KEY, NAME VARCHAR(30) NOT NULL, PRICE FLOAT(15) NOT NULL, QTY INT(6), NET_VALUE FLOAT(10), LUPDAT TIMESTAMP);";
         $conn->query($stk);
@@ -53,7 +51,7 @@
         $mon = "CREATE TABLE IF NOT EXISTS mon".date("mY")." (ID INT(6) UNSIGNED PRIMARY KEY, NAME VARCHAR(30) NOT NULL, PRICE FLOAT(15) NOT NULL, QTY INT(6), DISC INT(10), NET_VALUE FLOAT(10), CORD VARCHAR(10));";
         
         if ($conn->query($tdy) && $conn->query($mon) === TRUE) {
-            echo "Today's and Month's account opened successfully <br>";
+            echo "";
         } else {
             echo "Error opening Account: " . $conn->error . "<br>";
         }
@@ -62,25 +60,7 @@
 
         ?>
         	</h6>
-    <div class="mitem col-md-6 col-sm-12 col-xs-12">
-        <form method="POST" action="stockup.php">
-            <label>Stock</label><br>
-            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
-            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
-            <input type="hidden" name="id" value="">
-            <input type="hidden" name="pname" value="">
-            <input type="hidden" name="price" value="">
-            <input type="hidden" name="qty" value="">
-            <input type="hidden" name="stk" value="">
-            <button type="submit">Update Stock</button>
-        </form>
-        <form method="POST" action="stockview.php">
-            <input type="hidden" name="tabname" value="STOCK">
-            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
-            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
-            <button type="submit">View Stock</button>
-        </form>
-    </div>
+    
     <div class="mitem col-md-6 col-sm-12 col-xs-12">
         <form method="POST" action="today.php">
             <label>Records</label><br>
@@ -121,6 +101,32 @@
             <input type="hidden" name="qty" value="">
             <input type="hidden" name="stk" value="">
             <button type="submit">New Bill</button>
+        </form>
+        <form method="POST" action="billview.php">
+            <input type="hidden" name="tabname" value="<?php echo 'bill'; ?>">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <input type="text" name="tabext" placeholder="Enter Invoice Number" required>
+            <button type="submit">View Bill</button>
+        </form>
+    </div>
+    <div class="mitem col-md-6 col-sm-12 col-xs-12">
+        <form method="POST" action="stockup.php">
+            <label>Stock</label><br>
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <input type="hidden" name="id" value="">
+            <input type="hidden" name="pname" value="">
+            <input type="hidden" name="price" value="">
+            <input type="hidden" name="qty" value="">
+            <input type="hidden" name="stk" value="">
+            <button type="submit">Update Stock</button>
+        </form>
+        <form method="POST" action="stockview.php">
+            <input type="hidden" name="tabname" value="STOCK">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <button type="submit">View Stock</button>
         </form>
     </div>
 

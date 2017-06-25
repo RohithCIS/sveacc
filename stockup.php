@@ -31,10 +31,10 @@
 
         $conn = new mysqli($servername, $username, $password, "SVE");
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error) . "<br>";
-        }
-        echo "Connected successfully <br>";
+        // if ($conn->connect_error) {
+        //     die("Connection failed: " . $conn->connect_error) . "<br>";
+        // }
+        // echo "Connected successfully <br>";
 
         if ($stk != "") {
 
@@ -43,8 +43,7 @@
                 echo "Entry Added <br>";
             }
             else{
-                $stk = "UPDATE STOCK SET NAME='".$NAME."',PRICE=".$PRICE.",QTY=".$QTY.",NET_VALUE=PRICE*QTY WHERE ID=".$ID.";";
-                $conn->query($stk);
+                $stk = "UPDATE STOCK SET NAME='".$NAME."',PRICE=".$PRICE.",QTY=QTY+".$QTY.",NET_VALUE=PRICE*QTY WHERE ID=".$ID.";";
                 if ($conn->query($stk)===TRUE){
                     echo "Updated <br>";
                 }
@@ -62,6 +61,15 @@
 
         ?>
 	</h2>
+
+    <div class="cen">
+        <form method="POST" action="connect.php">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <button class="sub" type="submit">Main Menu</button>
+        </form>
+    </div>
+    
     <div class="upitem col-md-12 col-sm-12 col-xs-12">
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <label>Add or Update Item</label><br>

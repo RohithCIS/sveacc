@@ -6,7 +6,7 @@ html{
     font-family: 'Dosis', sans-serif;
 }
 
-h2{
+h2,h3{
     font-family: 'Dosis', sans-serif;
 }
 
@@ -49,7 +49,7 @@ h2{
 }
 
 .himg{
-    height: 150%;
+    height: 150px;
     margin: 10px;
     display: inline-block;
     background-color: #fff;
@@ -59,6 +59,10 @@ h2{
     display: inline-block;
     font-size: 50px;
     font-family: 'Dosis', sans-serif;
+}
+
+.headbar p{
+    visibility: hidden;
 }
 
 /*MENU PAGE*/
@@ -106,7 +110,7 @@ h2{
 
 .tdytabdisp{
     padding: 50px;
-    padding-top: 200px;
+    padding-top: 50px;
 }
 
 .tdytab{
@@ -121,7 +125,7 @@ h2{
     padding: 8px;
 }
 
-tr:nth-child(1) {
+tr:nth-child(odd) {
     background-color: #dddddd;
 }
 
@@ -161,4 +165,48 @@ tr:nth-child(1) {
 
 .billdisp{
     padding: 50px;
+}
+
+.print, .sub{
+    height: 40px;
+    width: auto;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background-color: #DEDEDE;
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
+}
+
+
+
+.print:hover{
+    background-color: #F4F4F4;
+}
+
+.sub:hover{
+    background-color: #F4F4F4;
+}
+
+.cen{
+    text-align: center;
+}
+
+.additem form{
+    display: inline-block;
+}
+
+.additem input{
+    margin: 10px;
+    padding: 5px;
+    height: 40px;
+    width: 30%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.loltabdisp{
+    padding: 50px;
+    padding-top: 200px;
 }

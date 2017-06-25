@@ -31,10 +31,10 @@
 
         $conn = new mysqli($servername, $username, $password, "SVE");
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error) . "<br>";
-        }
-        echo "Connected successfully <br>";
+        // if ($conn->connect_error) {
+        //     die("Connection failed: " . $conn->connect_error) . "<br>";
+        // }
+        // echo "Connected successfully <br>";
 
         $bill = "CREATE TABLE IF NOT EXISTS bill".$tabn." (ID INT(6) UNSIGNED PRIMARY KEY, NAME VARCHAR(30) NOT NULL, PRICE FLOAT(15) NOT NULL, QTY INT(6), DISC INT(10), NET_VALUE FLOAT(10), CORD VARCHAR(10));";
         $conn->query($bill);
@@ -47,21 +47,18 @@
                     $NAME=$row["NAME"];
                     $PRICE=$row["PRICE"];
                 }
-            } else {
-                echo "No such Item";
             }
 
         if ($stk != "") {
 
         $stk = "INSERT INTO bill".$_POST["tabname"]." (ID,NAME,PRICE,QTY,DISC,NET_VALUE,CORD) VALUES (".$ID.",'".$NAME."',".$PRICE.",".$QTY.",".$DISC.",PRICE*QTY-DISC,'CREDIT');";
             if ($conn->query($stk)===TRUE){
-                echo "Entry Added <br>";
+                echo "<br>Added";
             }
             else{
                 $stk = "UPDATE bill".$_POST["tabname"]." SET NAME='".$NAME."',PRICE=".$PRICE.",QTY=".$QTY.",DISC=".$DISC.",NET_VALUE=PRICE*QTY-DISC WHERE ID=".$ID.";";
-                $conn->query($stk);
                 if ($conn->query($stk)===TRUE){
-                    echo "Updated <br>";
+                    echo "<br>Updated";
                 }
                 else{
                     echo "Error<br>";
@@ -69,7 +66,7 @@
             }
         }
         else{
-            echo "Initialised";
+            echo "<br>Initialised";
         }
 
 
@@ -78,11 +75,11 @@
         ?>
     </h2>
 
-    <div>
+    <div class="additem">
         <h3>Invoice #<?php echo $_POST['tabname']; ?> </h3>
-
+        <br>
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <label>Records</label><br>
+            <label>Add Item</label><br>
             <input type="hidden" name="tabname" value="<?php echo $_POST['tabname']; ?>">
             <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
             <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
@@ -90,7 +87,19 @@
             <input type="number" name="id" placeholder="ID" required>
             <input type="number" name="qty" placeholder="Quantity" required>
             <input type="number" name="disc" placeholder="Discount, 0 if none" required>
-            <button type="submit">Add</button>
+            <button class="sub" type="submit">Add</button>
+        </form>
+        <form method="POST" action="cancel.php">
+            <input type="hidden" name="tabname" value="<?php echo $_POST['tabname']; ?>">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <button class="sub" type="submit">Cancel Bill</button>
+        </form>
+        <form method="POST" action="submit.php">
+            <input type="hidden" name="tabname" value="<?php echo $_POST['tabname']; ?>">
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="pwd" value="<?php echo $_POST['pwd']; ?>">
+            <button class="sub" type="submit">Submit Bill</button>
         </form>
     </div>
 
