@@ -1,0 +1,47 @@
+.headbar{
+	text-align: center;
+}
+
+.himg{
+	height: 150px;
+	display: inline-block;
+}
+
+.headbar p{
+	display: inline-block;
+	text-align: center;
+	font-size: 15px;
+}
+
+.tdytabdisp{
+    padding: 50px;
+    padding-top: 150px;
+}
+
+.tdytab{
+    font-family: 'Dosis', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tdytab td, .tdytab th {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(odd) {
+    background-color: #dddddd;
+}
+
+.print{
+	visibility: hidden;
+}
+
+.sub{
+	visibility: hidden;
+}
+
+.loltabdisp{
+    padding-top: 50px;
+}
